@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const discord_js_1 = require("discord.js");
 exports.default = async (channel, options = { reverseArray: false, userOnly: false, botOnly: false, pinnedOnly: false }) => {
-    if (!(channel instanceof discord_js_1.TextChannel))
+    if (!(channel instanceof discord_js_1.Channel && channel.type === "GUILD_TEXT"))
         throw new Error('discord-fetch-all: channel parameter is not a instance of a discord channel.');
     const { reverseArray, userOnly, botOnly, pinnedOnly } = options;
     let messages = [];

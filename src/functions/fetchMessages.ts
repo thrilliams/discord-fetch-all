@@ -1,16 +1,16 @@
-import { Message, TextChannel } from 'discord.js';
+import { Channel, Message, TextChannel } from 'discord.js';
 
 export default async (channel: TextChannel, options = { reverseArray: false, userOnly: false, botOnly: false, pinnedOnly: false }) => {
-    if (!(channel instanceof TextChannel)) throw new Error('discord-fetch-all: channel parameter is not a instance of a discord channel.');
+    if (!(channel instanceof Channel && channel.type === "GUILD_TEXT")) throw new Error('discord-fetch-all: channel parameter is not a instance of a discord channel.');
     const { reverseArray, userOnly, botOnly, pinnedOnly } = options;
     let messages: Message[] = []
     let lastID: string | undefined;
 
     while (true) {
-        const fetchedMessages = await channel.messages.fetch({ 
-            limit: 100, 
-            ...(lastID && { before: lastID }) 
-          })
+        const fetchedMessages = await channel.messages.fetch({
+            limit: 100,
+            ...(lastID && { before: lastID })
+        })
 
         if (fetchedMessages.size === 0) {
             if (reverseArray) messages = messages.reverse();
