@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iColtz/discord-fetch-all.git"
+    "url": "git://github.com/iColtz/discord-fetch-all.git"
   },
   "keywords": [
     "discord",
@@ -30,6 +30,6 @@
     "typescript": "^4.0.5"
   },
   "dependencies": {
-    "discord.js": "^12.4.1"
+    "discord.js": "git://github.com/discordjs/discord.js.git#d16ada97087e0324134484c9c0724b52a2839bdf"
   }
 }

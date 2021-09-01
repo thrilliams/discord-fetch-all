@@ -1,13 +1,18 @@
-import { Client, Message, TextChannel } from 'discord.js';
+import { Client, Intents, Message, TextChannel } from 'discord.js';
 import { messages, reactions } from '../src/index';
 import { BOT_TOKEN } from './config';
 
-const client: Client = new Client();
+const client: Client = new Client({
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+    ]
+});
 
 client.once('ready', () => console.log('Yoo test is ready!'));
 
 client.on('message', async (message: Message) => {
-    if (!(message.channel instanceof TextChannel)) return; 
+    if (!(message.channel instanceof TextChannel)) return;
 
     if (message.content === '!fetchMessages') {
         const allMessages = await messages(message.channel, {
@@ -20,8 +25,8 @@ client.on('message', async (message: Message) => {
         console.log(allMessages.map(msg => msg.content));
     }
     else if (message.content === '!fetchReactions') {
-        const msg = await message.channel.messages.fetch('775737328123248640');
-        const allReactions = await reactions(msg, '🤔', {
+        const msg = await message.channel.messages.fetch('882488807268687933');
+        const allReactions = await reactions(msg, '🥵', {
             userOnly: true,
             botOnly: false,
         });
