@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = async (channel, options = { reverseArray: false, userOnly: false, botOnly: false, pinnedOnly: false }) => {
-    // if (!(channel.type && channel.type === "GUILD_TEXT")) throw new Error('discord-fetch-all: channel parameter is not a instance of a discord channel.');
     const { reverseArray, userOnly, botOnly, pinnedOnly } = options;
     let messages = [];
     let lastID;
